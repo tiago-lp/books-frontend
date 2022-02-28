@@ -1,11 +1,17 @@
-// import React, { createContext } from 'react';
 import { createContext } from 'react';
-// import { useAuthContext } from 'hooks';
+import { useAuthContext } from '../../hooks';
 
 const Context = createContext();
 
-function AuthProvider() {
-    return null;
+const AuthProvider = ({ children }) => {
+    const { isAuthenticated, loading, login, logout } = useAuthContext();
+    return (
+        <Context.Provider
+            value={{ isAuthenticated, loading, login, logout }}
+        >
+            {children}
+        </Context.Provider>
+    );
 }
 
 export { Context, AuthProvider };
